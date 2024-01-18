@@ -1,11 +1,13 @@
 {
   "name": "@linkare/keystone6-document-renderer-vue3",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "module": "./dist/keystone6-document-renderer-vue3.js",
   "typings": "./dist/index.d.ts",
   "license": "MIT",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
