@@ -1,6 +1,5 @@
 {
   "name": "@linkare/keystone6-document-renderer-vue3",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
   "module": "./dist/keystone6-document-renderer-vue3.js",
