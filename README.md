@@ -1,6 +1,6 @@
 # KeystoneJS 6 Document Renderer for Vue 3
 
-This is a port of the keystonejs 6 DocumentRenderer, originally made in react and available on [https://github.com/keystonejs/keystone/tree/main/packages/document-renderer].
+This is a port of the keystonejs 6 DocumentRenderer, originally made in react and available on https://github.com/keystonejs/keystone/tree/main/packages/document-renderer.
 
 # Sample code
 
