@@ -40,14 +40,14 @@ export interface Renderers {
     } & MarkRenderers
     block: {
         block: OnlyChildrenComponent
-        paragraph: Component<{ children: JSX.Element, textAlign: 'center' | 'end' | undefined }>
+        paragraph: Component<{ children: JSX.Element[], textAlign: 'center' | 'end' | undefined }>
         blockquote: OnlyChildrenComponent
         code: Component<{ children: string }> | keyof JSX.IntrinsicElements
         layout: Component<{ layout: [number, ...number[]], children: JSX.Element[] }>
         divider: Component<{}> | keyof JSX.IntrinsicElements
         heading: Component<{
             level: 1 | 2 | 3 | 4 | 5 | 6
-            children: JSX.Element
+            children: JSX.Element[]
             textAlign: 'center' | 'end' | undefined
         }>
         list: Component<{ type: 'ordered' | 'unordered', children: JSX.Element[] }>
@@ -146,7 +146,7 @@ function DocumentNode({
             return <></>;
         }
         case 'paragraph': {
-            return <renderers.block.paragraph children={children[0]}
+            return <renderers.block.paragraph children={children}
                 textAlign={node.textAlign as any}>{
                     children
                 }</renderers.block.paragraph>;
@@ -164,7 +164,7 @@ function DocumentNode({
                 const Mark = renderers.block.code;
 
                 if (typeof Mark === 'string') {
-                    return <Mark>{child}</Mark>
+                    return <Mark>{childText}</Mark>
                 } else if (typeof Mark === 'function') {
                     return <Mark children={childText}>{childText}</Mark>
                 }
@@ -189,7 +189,7 @@ function DocumentNode({
                 <renderers.block.heading
                     textAlign={node.textAlign as any}
                     level={node.level as any}
-                    children={children[0]}
+                    children={children}
                 >{children}</renderers.block.heading>
             )
         }
@@ -235,11 +235,10 @@ function DocumentNode({
         case 'link': {
             const Mark = renderers.inline.link;
             if (typeof Mark === 'string') {
-                return <Mark href={node.href as string}></Mark>
+                return <Mark href={node.href as string}>{ children }</Mark>
             } else if (typeof Mark === 'function') {
                 return <Mark children={children[0]}
-                    href={node.href as string}>{
-                        children}</Mark>
+                    href={node.href as string}>{ children}</Mark>
             }
         }
     }
