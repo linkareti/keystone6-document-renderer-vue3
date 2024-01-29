@@ -28,14 +28,16 @@ jobs:
       - name: Build library
         run: yarn build
 
-      - name: Generate changelog, set new version, commit it, and tag it
-        run: yarn changelog
-
-      - name: Push new version
+      - name: Set git user to linkareti
         run: |
             git config --global user.name 'linkareti'
             git config --global user.email 'handyman@linkare.com'
-            git push
+
+      - name: Generate changelog, set new version, commit it, and tag it
+        run: yarn changelog
+
+      - name: Push new version to main branch
+        run: git push
 
       - name: Publish to NPM
         run: yarn publish
