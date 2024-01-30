@@ -1,6 +1,6 @@
 {
   "name": "@linkare/keystone6-document-renderer-vue3",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "module": "./dist/keystone6-document-renderer-vue3.js",
   "typings": "./dist/index.d.ts",
@@ -26,5 +26,8 @@
     "vite-plugin-dts": "^3.7.1",
     "vue": "^3.0.0",
     "vue-tsc": "^1.8.25"
+  },
+  "commit-and-tag-version": {
+    "releaseCount": 0
   }
 }
