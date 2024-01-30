@@ -40,7 +40,7 @@ jobs:
         run: yarn changelog
 
       - name: Push new version to main branch
-        run: git push
+        run: git push --follow-tags origin master
 
       - name: Publish to NPM
         run: yarn publish
