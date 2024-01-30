@@ -34,7 +34,7 @@ jobs:
       - name: Set git user to linkareti
         run: |
             git config --global user.name 'linkareti'
-            git config --global user.email 'handyman@linkare.com'
+            git config --global user.email 'you@linkare.com'
 
       - name: Generate changelog, set new version, commit it, and tag it
         run: yarn changelog
