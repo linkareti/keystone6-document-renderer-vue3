@@ -39,7 +39,7 @@ export interface Renderers {
         }>
     } & MarkRenderers
     block: {
-        block: OnlyChildrenComponent
+        block: Component<{ children: JSX.Element[], className: string }> | keyof JSX.IntrinsicElements
         paragraph: Component<{ children: JSX.Element[], textAlign: 'center' | 'end' | undefined }>
         blockquote: OnlyChildrenComponent
         code: Component<{ children: string }> | keyof JSX.IntrinsicElements
@@ -199,16 +199,18 @@ function DocumentNode({
                 const props = createComponentBlockProps(node, children);
 
                 const Block = renderers.block.block;
+                const componentName = (node.component as string).toLowerCase();
+                const wrapperClasses = `wrapper-component-block wrapper-component-block-${componentName}`;
 
                 if (typeof Block === 'string') {
                     return <Block><Comp {...props}>{
                         props.children || null
                     }</Comp></Block>
                 } else if (typeof Block === 'function') {
-                    return <Block children={[<Comp />]}>
-                        <Comp {...props}>{
+                    return <Block className={wrapperClasses} children={
+                        [<Comp {...props}>{
                             props.children || null
-                        }</Comp>
+                        }</Comp>]}>
                     </Block>;
                 }
             }
